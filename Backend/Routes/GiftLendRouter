@@ -1,0 +1,26 @@
+const express = require('express');
+const router = express.Router();
+const auth = require('../Middlewares/auth');
+const {
+  checkAccess,
+  sendGift,
+  getReceivedGifts,
+  getSentGifts,
+  respondToGift,
+  lendBook,
+  getBorrowedBooks,
+  getLentBooks,
+  returnBook,
+} = require('../Controllers/GiftLendController');
+
+router.get('/check-access/:bookId',  auth, checkAccess);
+router.post('/send',                 auth, sendGift);
+router.get('/received',              auth, getReceivedGifts);
+router.get('/sent',                  auth, getSentGifts);
+router.patch('/:id/respond',         auth, respondToGift);
+router.post('/lend',                 auth, lendBook);
+router.get('/borrowed',              auth, getBorrowedBooks);
+router.get('/lent-out',              auth, getLentBooks);
+router.delete('/lend/:id/return',    auth, returnBook);
+
+module.exports = router;

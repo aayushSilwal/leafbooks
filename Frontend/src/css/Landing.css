@@ -1,0 +1,313 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ─── Reset ─────────────────────────────────────────────── */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ─── Main Layout ───────────────────────────────────────── */
+.landing-container {
+  height: 100vh;
+  background: linear-gradient(135deg, #2e3ebd, #01016e);
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* Subtle radial glow overlays */
+.landing-container::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(74, 144, 217, 0.15) 0%, transparent 70%);
+  top: -150px;
+  right: 0;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.landing-container::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+  bottom: -100px;
+  left: 100px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ─── Logo ──────────────────────────────────────────────── */
+.landing-logo {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+  width: 180px;
+  height: auto;
+  user-select: none;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* ─── Top Right Buttons ─────────────────────────────────── */
+.landing-topbar {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  display: flex;
+  gap: 12px;
+  z-index: 10;
+}
+
+/* ─── Buttons ───────────────────────────────────────────── */
+.landing-btn {
+  padding: 11px 26px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: none;
+}
+
+.landing-btn.primary {
+  background: #1e88e5;
+  color: white;
+  box-shadow: 0 4px 16px rgba(30, 136, 229, 0.35);
+}
+
+.landing-btn.primary:hover {
+  background: #1565c0;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(30, 136, 229, 0.45);
+}
+
+.landing-btn.outline {
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.landing-btn.outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: white;
+}
+
+.landing-btn.ghost {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
+}
+
+.landing-btn.ghost:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.landing-btn.large {
+  padding: 14px 32px;
+  font-size: 1rem;
+}
+
+/* ─── Left Hero Image ───────────────────────────────────── */
+.landing-hero {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
+  z-index: 1;
+}
+
+.landing-hero img {
+  width: 90%;
+  max-width: 520px;
+  border-radius: 24px;
+  filter: drop-shadow(0 24px 60px rgba(0, 0, 0, 0.3));
+  animation: floatHero 5s ease-in-out infinite;
+}
+
+/* ─── Right Text ────────────────────────────────────────── */
+.landing-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+  padding: 0 40px;
+  z-index: 1;
+}
+
+.landing-subtitle {
+  text-align: left;
+}
+
+.landing-cta {
+  justify-content: flex-start;
+}
+
+.landing-eyebrow {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0 0 14px;
+  animation: fadeInUp 0.6s ease both;
+}
+
+.landing-title {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 20px;
+  letter-spacing: -0.02em;
+  animation: fadeInUp 0.7s 0.1s ease both;
+}
+
+.landing-subtitle {
+  font-size: 1.1rem;
+  font-weight: 300;
+  opacity: 0.82;
+  line-height: 1.7;
+  margin: 0 0 36px;
+  max-width: 440px;
+  animation: fadeInUp 0.7s 0.2s ease both;
+}
+
+/* ─── CTA Buttons ───────────────────────────────────────── */
+.landing-cta {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 36px;
+  justify-content: center;
+  animation: fadeInUp 0.7s 0.3s ease both;
+}
+
+/* ─── Feature Pills ─────────────────────────────────────── */
+.landing-pills {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.7s 0.4s ease both;
+}
+
+.pill {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.88);
+  padding: 7px 16px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 400;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s ease;
+}
+
+.pill:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* ─── Floating Shapes ───────────────────────────────────── */
+.floating-shape {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ─── Animations ────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatHero {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-14px); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-20px); }
+}
+
+/* ─── Responsive ────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .landing-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 80px 24px 40px;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .landing-right {
+    align-items: center;
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .landing-hero img {
+    max-width: 300px;
+  }
+
+  .landing-title {
+    font-size: 2.8rem;
+  }
+
+  .landing-subtitle {
+    font-size: 1rem;
+  }
+
+  .landing-cta {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .landing-pills {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .landing-title {
+    font-size: 2.2rem;
+  }
+
+  .landing-logo {
+    width: 140px;
+  }
+
+  .landing-topbar {
+    gap: 8px;
+  }
+
+  .landing-btn {
+    padding: 9px 18px;
+    font-size: 0.82rem;
+  }
+}

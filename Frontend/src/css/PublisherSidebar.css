@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Lora:wght@500;600&display=swap');
+
+:root {
+  --pub-expanded:  220px;
+  --pub-collapsed: 64px;
+  --navbar-height: 64px;
+
+  --blue-deep:  #1a3a5c;
+  --blue-mid:   #2563a8;
+  --blue-soft:  #4a90d9;
+  --blue-ghost: #f0f6ff;
+  --blue-pale:  #ddeeff;
+
+  --ink:        #1a1f2e;
+  --ink-muted:  #5a6070;
+  --ink-faint:  #9aa0af;
+
+  --surface:    #ffffff;
+  --border:     #dde4ef;
+
+  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-body:  'DM Sans', sans-serif;
+}
+
+/* ─── Base ──────────────────────────────────────────────── */
+.pub-sidebar {
+  position: fixed;
+  top: var(--navbar-height);
+  left: 0;
+  height: calc(100vh - var(--navbar-height));
+  width: var(--pub-expanded);
+  background: var(--blue-deep);
+  border-right: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 2px 0 20px rgba(26, 58, 92, 0.15);
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0;
+  z-index: 90;
+  transition: width var(--transition);
+  font-family: var(--font-body);
+  overflow: hidden;
+}
+
+.pub-sidebar.collapsed {
+  width: var(--pub-collapsed);
+}
+
+/* ─── Hamburger ─────────────────────────────────────────── */
+.pub-sidebar-hamburger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: 4px auto 8px;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  color: rgba(255,255,255,0.6);
+  transition: all var(--transition);
+}
+
+.pub-sidebar-hamburger:hover {
+  background: rgba(255,255,255,0.08);
+  color: white;
+}
+
+/* ─── Divider ───────────────────────────────────────────── */
+.pub-sidebar-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 8px 12px;
+  flex-shrink: 0;
+}
+
+/* ─── Publisher Badge ───────────────────────────────────── */
+.pub-sidebar-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px 12px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.pub-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px rgba(74, 222, 128, 0.6);
+}
+
+.pub-badge-label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+}
+
+/* ─── Nav ───────────────────────────────────────────────── */
+.pub-sidebar-nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 4px 8px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+
+.pub-sidebar-nav::-webkit-scrollbar {
+  display: none;
+}
+
+/* ─── Nav Items ─────────────────────────────────────────── */
+.pub-sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: rgba(255,255,255,0.55);
+  font-size: 0.88rem;
+  font-weight: 400;
+  white-space: nowrap;
+  transition: all var(--transition);
+}
+
+.pub-sidebar-item:hover {
+  background: rgba(255,255,255,0.08);
+  color: white;
+}
+
+.pub-sidebar-item.active {
+  background: rgba(255,255,255,0.12);
+  color: white;
+  font-weight: 500;
+}
+
+.pub-sidebar-item.active .pub-sidebar-icon {
+  color: var(--blue-soft);
+}
+
+/* ─── Icons ─────────────────────────────────────────────── */
+.pub-sidebar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: rgba(255,255,255,0.4);
+  transition: color var(--transition);
+}
+
+.pub-sidebar-item:hover .pub-sidebar-icon {
+  color: white;
+}
+
+/* ─── Labels ────────────────────────────────────────────── */
+.pub-sidebar-label {
+  opacity: 1;
+  transition: opacity var(--transition);
+}
+
+.pub-sidebar.collapsed .pub-sidebar-label {
+  opacity: 0;
+  width: 0;
+  pointer-events: none;
+}
+
+/* ─── Tooltip when collapsed ────────────────────────────── */
+.pub-sidebar.collapsed .pub-sidebar-item {
+  position: relative;
+}
+
+.pub-sidebar.collapsed .pub-sidebar-item:hover::after {
+  content: attr(title);
+  position: absolute;
+  left: calc(var(--pub-collapsed) + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--ink);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 999;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* ─── Responsive ────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .pub-sidebar {
+    width: var(--pub-collapsed);
+  }
+
+  .pub-sidebar.expanded {
+    width: var(--pub-expanded);
+    box-shadow: 4px 0 24px rgba(26, 58, 92, 0.2);
+  }
+}

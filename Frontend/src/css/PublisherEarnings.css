@@ -1,0 +1,170 @@
+/* ─── Earnings Cards ────────────────────────────────────── */
+.earn-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.earn-card {
+  background: white;
+  border-radius: 16px;
+  padding: 22px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid #dde4ef;
+  box-shadow: 0 2px 12px rgba(26,58,92,0.06);
+  transition: box-shadow 0.2s ease;
+}
+
+.earn-card:hover {
+  box-shadow: 0 6px 24px rgba(26,58,92,0.1);
+}
+
+.earn-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.earn-card--total .earn-card-icon { background: #eff6ff; color: #2563a8; }
+.earn-card--paid  .earn-card-icon { background: #dcfce7; color: #16a34a; }
+.earn-card--pending .earn-card-icon { background: #fef9c3; color: #a16207; }
+
+.earn-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.earn-card-label {
+  font-size: 0.74rem;
+  color: #9aa0af;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+
+.earn-card-value {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #1a1f2e;
+  font-family: 'Lora', Georgia, serif;
+}
+
+.earn-shimmer {
+  display: inline-block;
+  width: 80px;
+  height: 20px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ─── Request Card ──────────────────────────────────────── */
+.earn-request-card {
+  background: white;
+  border: 1px solid #dde4ef;
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  box-shadow: 0 2px 12px rgba(26,58,92,0.06);
+  margin-bottom: 16px;
+}
+
+.earn-request-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1;
+}
+
+.earn-request-icon {
+  color: #2563a8;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.earn-request-title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1a3a5c;
+  margin-bottom: 6px;
+}
+
+.earn-request-desc {
+  font-size: 0.84rem;
+  color: #5a6070;
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+.earn-request-desc strong {
+  color: #1a3a5c;
+}
+
+.earn-request-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #1a3a5c, #2563a8);
+  color: white;
+  border: none;
+  border-radius: 999px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(37,99,168,0.35);
+  flex-shrink: 0;
+}
+
+.earn-request-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(37,99,168,0.45);
+}
+
+.earn-request-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ─── Note ──────────────────────────────────────────────── */
+.earn-note {
+  font-size: 0.78rem;
+  color: #9aa0af;
+  text-align: center;
+  padding: 0 20px;
+  line-height: 1.6;
+}
+
+/* ─── Responsive ────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .earn-request-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .earn-request-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

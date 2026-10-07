@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ─── Variables ─────────────────────────────────────────── */
+:root {
+  --sidebar-expanded-width:  220px;
+  --sidebar-collapsed-width: 64px;
+
+  --blue-deep:   #1a3a5c;
+  --blue-mid:    #2563a8;
+  --blue-soft:   #4a90d9;
+  --blue-ghost:  #f0f6ff;
+  --blue-pale:   #ddeeff;
+
+  --ink:         #1a1f2e;
+  --ink-muted:   #5a6070;
+  --ink-faint:   #9aa0af;
+
+  --surface:     #ffffff;
+  --border:      #dde4ef;
+
+  --transition:  0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-body:   'DM Sans', sans-serif;
+}
+
+/* ─── Sidebar Base ──────────────────────────────────────── */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: calc(100vh - var(--navbar-height));
+  top: var(--navbar-height);
+  width: var(--sidebar-expanded-width);
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  box-shadow: 2px 0 16px rgba(26, 58, 92, 0.06);
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0;
+  z-index: 90;
+  transition: width var(--transition);
+  font-family: var(--font-body);
+  overflow: hidden;
+}
+
+.sidebar.collapsed {
+  width: var(--sidebar-collapsed-width);
+}
+
+/* ─── Hamburger Button ──────────────────────────────────── */
+.sidebar-hamburger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: 4px auto 8px;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--ink-muted);
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+
+.sidebar-hamburger:hover {
+  background: var(--blue-ghost);
+  color: var(--blue-mid);
+}
+
+/* ─── Divider ───────────────────────────────────────────── */
+.sidebar-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 8px 12px;
+  flex-shrink: 0;
+}
+
+/* ─── Nav ───────────────────────────────────────────────── */
+.sidebar-nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 4px 8px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+  display: none;
+}
+
+/* ─── Nav Items ─────────────────────────────────────────── */
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--ink-muted);
+  font-size: 0.88rem;
+  font-weight: 400;
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  transition: all var(--transition);
+  font-family: var(--font-body);
+}
+
+.sidebar-item:hover {
+  background: var(--blue-ghost);
+  color: var(--blue-mid);
+}
+
+.sidebar-item.active {
+  background: var(--blue-ghost);
+  color: var(--blue-mid);
+  font-weight: 500;
+}
+
+.sidebar-item.active .sidebar-icon {
+  color: var(--blue-mid);
+}
+
+/* Publisher item — slightly highlighted */
+.sidebar-item.publisher-item {
+  color: var(--blue-mid);
+  font-weight: 500;
+}
+
+.sidebar-item.publisher-item:hover {
+  background: var(--blue-pale);
+}
+
+/* ─── Icons ─────────────────────────────────────────────── */
+.sidebar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--ink-faint);
+  transition: color var(--transition);
+}
+
+.sidebar-item:hover .sidebar-icon,
+.sidebar-item.active .sidebar-icon {
+  color: var(--blue-mid);
+}
+
+/* ─── Labels ────────────────────────────────────────────── */
+.sidebar-label {
+  opacity: 1;
+  transition: opacity var(--transition);
+  overflow: hidden;
+}
+
+.sidebar.collapsed .sidebar-label {
+  opacity: 0;
+  width: 0;
+  pointer-events: none;
+}
+
+
+
+/* ─── Tooltip for collapsed state ───────────────────────── */
+.sidebar.collapsed .sidebar-item {
+  position: relative;
+}
+
+.sidebar.collapsed .sidebar-item:hover::after {
+  content: attr(data-label);
+  position: absolute;
+  left: calc(var(--sidebar-collapsed-width) + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--ink);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 999;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* ─── Page Layout Helper ────────────────────────────────── */
+/* Add this class to your main content wrapper */
+.main-content {
+  margin-left: var(--sidebar-expanded-width);
+  transition: margin-left var(--transition);
+}
+
+.sidebar.collapsed ~ .main-content,
+.main-content.collapsed {
+  margin-left: var(--sidebar-collapsed-width);
+}
+
+/* ─── Responsive ────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .sidebar {
+    width: var(--sidebar-collapsed-width);
+  }
+
+  .sidebar.expanded {
+    width: var(--sidebar-expanded-width);
+    box-shadow: 4px 0 24px rgba(26, 58, 92, 0.15);
+  }
+}

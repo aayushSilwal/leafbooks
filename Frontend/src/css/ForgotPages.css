@@ -1,0 +1,111 @@
+/* Full page container */
+.auth-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #2e3ebd, #01016e);
+  font-family: "Poppins", sans-serif;
+}
+
+/* Card container */
+.auth-box {
+  background: #ffffff;
+  width: 400px;
+  max-width: 90%;
+  padding: 50px 40px;
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+  animation: fadeIn 0.6s ease forwards;
+  opacity: 0;
+}
+
+/* Title */
+.auth-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #01016e;
+  margin-bottom: 25px;
+}
+
+/* Input fields */
+.auth-input {
+  width: 90%;
+  padding: 14px 16px;
+  font-size: 1rem;
+  border-radius: 12px;
+  border: 2px solid #01016e;
+  background: #f7f7ff;
+  margin-bottom: 15px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.auth-input:focus {
+  border-color: #1e88e5;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(30,136,229,0.3);
+}
+
+/* Button */
+.auth-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 1.15rem;
+  background: #1e88e5;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s ease;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.auth-btn:hover {
+  background: #1565c0;
+}
+
+/* Links (Forgot / Reset) */
+.forgot-reset-link {
+  display: block;
+  font-size: 0.9rem;
+  color: #1e88e5;
+  text-decoration: none;
+  margin-top: 10px;
+  text-align: right;
+}
+
+.forgot-reset-link:hover {
+  text-decoration: underline;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(15px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 450px) {
+  .auth-box {
+    width: 90%;
+    padding: 40px 25px;
+  }
+}
+
+.forgot-reset-link {
+  display: block;
+  font-size: 0.9rem;
+  color: #1e88e5;
+  text-decoration: none;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  text-align: right;
+}
+
+.forgot-reset-link:hover {
+  text-decoration: underline;
+}

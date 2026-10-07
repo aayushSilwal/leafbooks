@@ -1,0 +1,404 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --blue-deep:   #1a3a5c;
+  --blue-mid:    #2563a8;
+  --blue-soft:   #4a90d9;
+  --blue-ghost:  #f0f6ff;
+  --blue-pale:   #ddeeff;
+  --ink:         #1a1f2e;
+  --ink-muted:   #5a6070;
+  --ink-faint:   #9aa0af;
+  --surface:     #ffffff;
+  --surface-off: #f7f9fc;
+  --border:      #dde4ef;
+  --green:       #16a34a;
+  --green-bg:    #dcfce7;
+  --red:         #dc2626;
+  --red-bg:      #fee2e2;
+  --esewa:       #60BB46;
+  --radius-md:   12px;
+  --radius-lg:   18px;
+  --shadow-card: 0 2px 16px rgba(26, 58, 92, 0.07);
+  --transition:  0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-display:'Lora', Georgia, serif;
+  --font-body:   'DM Sans', sans-serif;
+}
+
+/* ─── Page ──────────────────────────────────────────────── */
+.payment-result-page {
+  min-height: 100vh;
+  background: var(--surface-off);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  font-family: var(--font-body);
+}
+
+/* ─── Card ──────────────────────────────────────────────── */
+.payment-result-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 44px 40px 36px;
+  max-width: 460px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 8px 40px rgba(26, 58, 92, 0.1);
+  border: 1px solid var(--border);
+  animation: fadeUp 0.4s ease both;
+}
+
+.payment-result-card.receipt {
+  max-width: 500px;
+  padding: 32px 36px 32px;
+  text-align: left;
+}
+
+/* ─── Receipt Header ────────────────────────────────────── */
+.receipt-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.receipt-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.receipt-logo img {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+}
+
+.receipt-date {
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+}
+
+/* ─── Status block ──────────────────────────────────────── */
+.receipt-status-block {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.receipt-status-block .payment-result-icon {
+  margin: 0;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+
+.receipt-status-block h2 {
+  margin: 0 0 3px;
+  font-size: 1.2rem;
+}
+
+.receipt-status-block p {
+  margin: 0;
+  font-size: 0.83rem;
+}
+
+/* ─── Icon ──────────────────────────────────────────────── */
+.payment-result-icon {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 22px;
+  flex-shrink: 0;
+}
+
+.payment-result-icon.success {
+  background: var(--green-bg);
+  color: var(--green);
+}
+
+.payment-result-icon.failed {
+  background: var(--red-bg);
+  color: var(--red);
+}
+
+/* ─── Text ──────────────────────────────────────────────── */
+.payment-result-card h2 {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: var(--blue-deep);
+  margin: 0 0 10px;
+}
+
+.payment-result-card.receipt h2 {
+  font-size: 1.15rem;
+  margin: 0 0 4px;
+}
+
+.payment-result-card p {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin: 0 0 24px;
+  line-height: 1.65;
+}
+
+.payment-result-card.receipt p {
+  margin: 0;
+  font-size: 0.82rem;
+}
+
+.book-name-highlight {
+  color: var(--blue-deep);
+  font-weight: 500;
+}
+
+/* ─── Book Row ──────────────────────────────────────────── */
+.receipt-book-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--surface-off);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  margin-bottom: 20px;
+}
+
+.receipt-thumb {
+  width: 46px;
+  height: 62px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--ink-faint);
+  box-shadow: 0 2px 8px rgba(26, 58, 92, 0.1);
+}
+
+.receipt-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.receipt-book-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.receipt-book-title {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin: 0 0 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.receipt-book-author {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  margin: 0 0 6px;
+}
+
+.receipt-book-badge {
+  font-size: 0.7rem;
+  background: var(--blue-ghost);
+  color: var(--blue-mid);
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+.receipt-book-price {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--blue-deep);
+  flex-shrink: 0;
+  font-family: var(--font-display);
+}
+
+/* ─── Totals & Meta ─────────────────────────────────────── */
+.receipt-totals {
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+  margin-bottom: 14px;
+}
+
+.receipt-meta {
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+  margin-bottom: 24px;
+}
+
+/* ─── Row ───────────────────────────────────────────────── */
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  padding: 5px 0;
+  gap: 12px;
+}
+
+.receipt-row.grand {
+  border-top: 1px solid var(--border);
+  margin-top: 6px;
+  padding-top: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.receipt-row span:last-child,
+.receipt-row code {
+  color: var(--ink);
+  text-align: right;
+}
+
+/* ─── Badges ────────────────────────────────────────────── */
+.esewa-badge {
+  background: var(--esewa);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 9px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+
+.receipt-status-complete {
+  font-size: 0.75rem;
+  background: var(--green-bg);
+  color: var(--green);
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+.receipt-code {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  background: var(--surface-off);
+  padding: 2px 7px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  max-width: 190px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* ─── Actions ───────────────────────────────────────────── */
+.payment-result-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-read {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 13px;
+  background: linear-gradient(135deg, var(--blue-mid), var(--blue-soft));
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  box-shadow: 0 4px 14px rgba(37, 99, 168, 0.28);
+}
+
+.btn-read:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(37, 99, 168, 0.38);
+}
+
+.btn-library {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-library:hover {
+  border-color: var(--blue-soft);
+  color: var(--blue-mid);
+  background: var(--blue-ghost);
+}
+
+/* ─── Failure-specific ──────────────────────────────────── */
+.failure-note {
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  margin-top: 16px !important;
+  margin-bottom: 0 !important;
+}
+
+/* ─── Animation ─────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Responsive ────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .payment-result-card,
+  .payment-result-card.receipt {
+    padding: 28px 20px 24px;
+  }
+
+  .receipt-book-row {
+    flex-wrap: wrap;
+  }
+
+  .receipt-book-price {
+    width: 100%;
+    text-align: right;
+  }
+
+  .receipt-code {
+    max-width: 130px;
+  }
+}
+
+/* ─── Failure logo ──────────────────────────────────────── */
+.failure-logo {
+  margin-bottom: 24px;
+}
+
+.failure-logo img {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+}

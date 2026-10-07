@@ -1,0 +1,432 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --blue-deep:   #1a3a5c;
+  --blue-mid:    #2563a8;
+  --blue-soft:   #4a90d9;
+  --blue-ghost:  #f0f6ff;
+  --blue-pale:   #ddeeff;
+  --ink:         #1a1f2e;
+  --ink-muted:   #5a6070;
+  --ink-faint:   #9aa0af;
+  --surface:     #ffffff;
+  --surface-off: #f7f9fc;
+  --border:      #dde4ef;
+  --sidebar-expanded:  220px;
+  --sidebar-collapsed: 64px;
+  --navbar-height:     64px;
+  --radius-md:   12px;
+  --radius-lg:   18px;
+  --shadow-card: 0 2px 16px rgba(26, 58, 92, 0.07);
+  --transition:  0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-display: 'Lora', Georgia, serif;
+  --font-body:    'DM Sans', sans-serif;
+}
+
+/* ─── Layout ────────────────────────────────────────────── */
+.lib-layout {
+  min-height: 100vh;
+  background: var(--surface-off);
+  font-family: var(--font-body);
+}
+
+.lib-main {
+  margin-top: var(--navbar-height);
+  margin-left: var(--sidebar-collapsed);
+  padding: 32px 40px 60px;
+  transition: margin-left var(--transition);
+}
+
+.lib-layout.sidebar-open .lib-main {
+  margin-left: var(--sidebar-expanded);
+}
+
+/* ─── Header ────────────────────────────────────────────── */
+.lib-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  animation: fadeUp 0.4s ease both;
+}
+
+.lib-title {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 600;
+  color: var(--blue-deep);
+  margin: 0 0 4px;
+  letter-spacing: -0.02em;
+}
+
+.lib-subtitle {
+  font-size: 0.84rem;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+/* ─── View Toggle ───────────────────────────────────────── */
+.lib-view-toggle {
+  display: flex;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.lib-view-toggle button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: none;
+  background: transparent;
+  color: var(--ink-faint);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.lib-view-toggle button.active {
+  background: var(--blue-ghost);
+  color: var(--blue-mid);
+}
+
+.lib-view-toggle button:hover:not(.active) {
+  background: var(--surface-off);
+  color: var(--ink-muted);
+}
+
+/* ─── Tabs ──────────────────────────────────────────────── */
+.lib-tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 28px;
+  animation: fadeUp 0.4s 0.05s ease both;
+}
+
+.lib-tab {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 18px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 400;
+  color: var(--ink-muted);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.lib-tab:hover { color: var(--blue-mid); }
+
+.lib-tab.active {
+  color: var(--blue-mid);
+  font-weight: 500;
+  border-bottom-color: var(--blue-mid);
+}
+
+.lib-tab-count {
+  background: var(--blue-ghost);
+  color: var(--blue-mid);
+  border-radius: 999px;
+  padding: 1px 7px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.lib-tab.active .lib-tab-count {
+  background: var(--blue-mid);
+  color: white;
+}
+
+/* ─── Grid ──────────────────────────────────────────────── */
+.lib-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+  gap: 24px;
+  animation: fadeUp 0.35s ease both;
+}
+
+.lib-grid-card {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform var(--transition);
+}
+
+.lib-grid-card:hover { transform: translateY(-4px); }
+
+.lib-grid-cover {
+  position: relative;
+  aspect-ratio: 2/3;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(26, 58, 92, 0.1);
+  transition: box-shadow var(--transition);
+}
+
+.lib-grid-card:hover .lib-grid-cover {
+  box-shadow: 0 8px 28px rgba(26, 58, 92, 0.18);
+}
+
+.lib-grid-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.lib-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 58, 92, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: white;
+  font-size: 0.78rem;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity var(--transition);
+  backdrop-filter: blur(2px);
+}
+
+.lib-grid-card:hover .lib-grid-overlay { opacity: 1; }
+
+.lib-grid-info { display: flex; flex-direction: column; gap: 3px; }
+
+.lib-grid-title {
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lib-grid-author {
+  font-size: 0.74rem;
+  color: var(--ink-muted);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lib-grid-meta {
+  font-size: 0.68rem;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+/* ─── List ──────────────────────────────────────────────── */
+.lib-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: fadeUp 0.35s ease both;
+}
+
+.lib-list-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all var(--transition);
+  box-shadow: var(--shadow-card);
+}
+
+.lib-list-card:hover {
+  border-color: var(--blue-pale);
+  box-shadow: 0 4px 20px rgba(26, 58, 92, 0.1);
+  transform: translateX(3px);
+}
+
+.lib-list-cover {
+  width: 64px;
+  flex-shrink: 0;
+  aspect-ratio: 2/3;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(26, 58, 92, 0.1);
+}
+
+.lib-list-cover img { width: 100%; height: 100%; object-fit: cover; }
+
+.lib-list-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.lib-list-genre {
+  font-size: 0.68rem;
+  color: var(--blue-soft);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.lib-list-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--blue-deep);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lib-list-author {
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  margin: 0;
+}
+
+.lib-list-publisher {
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+.lib-list-meta {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  margin-top: 2px;
+}
+
+.times-read {
+  color: var(--blue-soft);
+  font-weight: 500;
+}
+
+/* ─── Read Button ───────────────────────────────────────── */
+.lib-read-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  background: linear-gradient(135deg, var(--blue-mid), var(--blue-soft));
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all var(--transition);
+  box-shadow: 0 3px 12px rgba(37, 99, 168, 0.25);
+}
+
+.lib-read-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 16px rgba(37, 99, 168, 0.35);
+}
+
+/* ─── Empty State ───────────────────────────────────────── */
+.lib-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 80px 20px;
+  text-align: center;
+  color: var(--ink-muted);
+}
+
+.lib-empty span { font-size: 3rem; }
+.lib-empty p { font-size: 0.92rem; margin: 0; }
+.lib-empty-sub { font-size: 0.8rem !important; color: var(--ink-faint) !important; }
+
+/* ─── Skeleton ──────────────────────────────────────────── */
+.lib-grid-skeleton { display: flex; flex-direction: column; }
+.lib-skeleton-cover { aspect-ratio: 2/3; border-radius: var(--radius-md); }
+.lib-skeleton-line { border-radius: 6px; }
+.lib-list-skeleton { height: 96px; border-radius: var(--radius-lg); }
+
+.loading-shimmer {
+  background: linear-gradient(90deg, var(--surface-off) 25%, var(--border) 50%, var(--surface-off) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+/* ─── Animations ────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ─── Responsive ────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .lib-main { padding: 20px 16px 40px; margin-left: var(--sidebar-collapsed); }
+  .lib-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 16px; }
+  .lib-read-btn span { display: none; }
+}
+
+/* ─── Bookshelf Button ──────────────────────────────────── */
+.lib-shelf-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+  padding: 4px 10px;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink-muted);
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.lib-shelf-btn:hover {
+  border-color: var(--blue-soft);
+  color: var(--blue-mid);
+  background: var(--blue-ghost);
+}
+
+.lib-shelf-btn.in-shelf {
+  border-color: var(--blue-pale);
+  color: var(--blue-mid);
+  background: var(--blue-ghost);
+  font-weight: 600;
+}
+
+/* ─── List Actions ──────────────────────────────────────── */
+.lib-list-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
